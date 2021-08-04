@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mybatis.mybatisplus.mapper.IDeviceMapper;
 import com.mybatis.mybatisplus.mapper.IUserMapper;
 import com.mybatis.mybatisplus.pojo.Device;
+import com.mybatis.mybatisplus.pojo.Site;
 import com.mybatis.mybatisplus.pojo.User;
+import com.mybatis.mybatisplus.service.SiteService;
+import com.mybatis.mybatisplus.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +22,10 @@ public class MybatisplusApplicationTests {
     IUserMapper userMapper;
     @Autowired
     IDeviceMapper deviceMapper;
+    @Autowired
+    UserService userService;
+    @Autowired
+    SiteService siteService;
     @Test
     public void test0() {
         List<Device> devices = deviceMapper.selectAllByUserId(1);
@@ -67,6 +74,16 @@ public class MybatisplusApplicationTests {
     }
     @Test
     public void test05(){
-
+        List list = userService.loadUsers();
+        System.out.println(list);
+    }
+    @Test
+    public void test06(){
+        Integer i = siteService.update(new Site(2, "广东工", 1));
+        System.out.println(i);
+    }@Test
+    public void test07(){
+        List<Device> devices = deviceMapper.selectAllByUserId(1);
+        devices.forEach(System.out::println);
     }
 }

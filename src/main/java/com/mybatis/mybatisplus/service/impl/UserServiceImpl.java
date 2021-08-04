@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Cjl
@@ -25,9 +27,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer save(User user) {
-//        user.setStatus(0);
-//        user.setRegisterTime(new Date());
-//        user.setUpdateTime(new Date());
         int insert = userMapper.insert(user);
         return insert;
     }
@@ -53,5 +52,11 @@ public class UserServiceImpl implements UserService {
             resultVO.setMessage("用户名密码错误！！！");
             return resultVO;
         }
+    }
+
+    @Override
+    public List<User> loadUsers() {
+        List<User> users = userMapper.selectList(null);
+        return users;
     }
 }

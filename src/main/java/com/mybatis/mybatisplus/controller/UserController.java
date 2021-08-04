@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -41,40 +42,15 @@ public class UserController  {
             e.printStackTrace();
             return ResultVO.error("登录失败", "当前登录人数过多，请稍后再试！");
         }
-//        HashMap map = new HashMap();
-//        map.put("token","admin");
-//        return ResultVO.ok("成功",map);
+
 
     }
-
-//    @GetMapping("/info")
-//    public ResultVO info(){
-//        HashMap map = new HashMap();
-//        map.put("roles","[admin]");
-//        map.put("name","admin");
-//        map.put("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
-//        return ResultVO.ok("success",map);
-//
-//    }
-
-
 
     @PostMapping("/users")
-    public ResultVO register(@RequestBody User user, HttpServletResponse response){
-        ResultVO resultVO = new ResultVO();
-        System.out.println("user = " + user);
-        userService.save(user);
-        resultVO.setSuccess(true);
-        resultVO.setMessage("注册成功");
-        return resultVO;
+    public List loadUserName(){
+        return  userService.loadUsers();
     }
 
-    @RequestMapping("/u")
-    public ResultVO get(){
-        ResultVO resultVO = new ResultVO();
-        resultVO.setMessage("123");
-        return resultVO;
-    }
 
 
 

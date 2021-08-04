@@ -45,6 +45,12 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public Integer update(Site site) {
-        return siteMapper.update(site,null);
+        return siteMapper.updateById(site);
     }
+
+    @Override
+    public List<Site> seletAll() {
+        return siteMapper.selectList(null);
+    }
+
 }
