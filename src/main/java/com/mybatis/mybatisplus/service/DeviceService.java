@@ -12,8 +12,9 @@ import java.util.List;
 public interface DeviceService {
 
     List<Device> findAllByUserId(Integer userId);
+    List<Device> findAllByLikeName(String likeName,Integer userId);
 
     ResultVO addDevice(Device device);
     ResultVO deleteDevice(Integer deviceId);
-
+    ResultVO updateDevice(Device device);
 }

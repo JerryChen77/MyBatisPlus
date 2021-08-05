@@ -28,6 +28,15 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
+    public List<Device> findAllByLikeName(String likeName, Integer userId) {
+        if (likeName==null||likeName.trim().equals("")){
+            return deviceMapper.selectAllByUserId(userId);
+        }
+        String deviceLikeName='%'+likeName.trim()+'%';
+        return deviceMapper.selectAllByLikeName(userId,deviceLikeName);
+    }
+
+    @Override
     public ResultVO addDevice(Device device) {
         int i = deviceMapper.insert(device);
         return i>0?ResultVO.ok("添加成功"):ResultVO.error("添加失败");
@@ -38,4 +47,11 @@ public class DeviceServiceImpl implements DeviceService {
         int i = deviceMapper.deleteById(deviceId);
         return i>0?ResultVO.ok("删除成功"):ResultVO.error("删除失败");
     }
+
+    @Override
+    public ResultVO updateDevice(Device device) {
+        int i = deviceMapper.updateById(device);
+        return i>0?ResultVO.ok("更新成功"):ResultVO.error("更新失败");
+    }
+
 }

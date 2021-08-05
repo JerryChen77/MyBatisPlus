@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface IDeviceMapper extends BaseMapper<Device> {
     List<Device> selectAllByUserId(Integer userId);
+    List<Device> selectAllByLikeName(Integer userId,String likeName);
 }

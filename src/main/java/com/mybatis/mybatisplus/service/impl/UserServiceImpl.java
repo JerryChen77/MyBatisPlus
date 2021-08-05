@@ -33,11 +33,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVO login(String username, String password) {
-        System.out.println(username);
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("user_name",username);
         User byUsername = userMapper.selectOne(queryWrapper);
-        System.out.println("byUsername = " + byUsername);
         if (byUsername==null){
             resultVO.setSuccess(false);
             resultVO.setMessage("用户不存在，请先注册");

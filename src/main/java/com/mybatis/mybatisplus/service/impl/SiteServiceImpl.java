@@ -1,7 +1,9 @@
 package com.mybatis.mybatisplus.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mybatis.mybatisplus.mapper.IDeviceMapper;
 import com.mybatis.mybatisplus.mapper.ISiteMapper;
+import com.mybatis.mybatisplus.pojo.Device;
 import com.mybatis.mybatisplus.pojo.Site;
 import com.mybatis.mybatisplus.service.SiteService;
 import com.mybatis.mybatisplus.vo.ResultVO;
@@ -21,6 +23,8 @@ public class SiteServiceImpl implements SiteService {
 
     @Autowired
     ISiteMapper siteMapper;
+    @Autowired
+    IDeviceMapper deviceMapper;
 
     @Override
     public ResultVO selectByUserId(Integer userId) {
@@ -35,6 +39,9 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     public Integer DeleteById(Integer siteId) {
+        QueryWrapper<Device> wrapper = new QueryWrapper<>();
+        wrapper.eq("site_id",siteId);
+        deviceMapper.delete(wrapper);
         return siteMapper.deleteById(siteId);
     }
 

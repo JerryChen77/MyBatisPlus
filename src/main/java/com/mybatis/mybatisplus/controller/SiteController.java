@@ -48,7 +48,6 @@ public class SiteController {
     }
     @RequestMapping("/update")
     public ResultVO updateSite(@RequestBody Site site){
-        System.out.println(site);
         Integer i = siteService.update(site);
        return i>0?ResultVO.ok("修改成功"):ResultVO.error("修改失败");
     }
