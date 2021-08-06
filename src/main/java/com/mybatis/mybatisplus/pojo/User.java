@@ -34,4 +34,5 @@ public class User implements Serializable {
 //    private Integer status;
 //    private Date registerTime;
 //    private Date updateTime;
+    //分支合并完成
 }
