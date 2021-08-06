@@ -27,9 +27,9 @@ public class Device {
     private String deviceType;
     private Integer siteId;
 
-//对象中保存工地名称，用于在更新页面显示
-//    @TableField(exist = false)
-//    private String siteName;
+//对象中保存工地名称，用于在list页面、更新页面显示
+    @TableField(exist = false)
+    private String siteName;
 
 
 
